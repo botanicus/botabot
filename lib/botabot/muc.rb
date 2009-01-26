@@ -18,7 +18,7 @@ module BotaBot
         if message.body.match(/^\.(\w+)(\s*(.+))?/)
           name = $1.to_sym
           args = ($3.split(/\s+/) rescue Array.new)
-          Plugins[name].run(self, *args)
+          Plugins[name].run(self, message, *args)
         end
       end
       

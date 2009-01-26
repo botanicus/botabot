@@ -17,7 +17,7 @@ module BotaBot
     #  @roles or Roles.all
     #end
     
-    def run(muc, *args)
+    def run(muc, message, *args)
       BotaBot.logger.debug("Called plugin #{@name} with args #{args.inspect}")
       @block.call(@client, muc, *args)
     rescue

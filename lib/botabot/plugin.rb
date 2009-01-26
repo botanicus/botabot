@@ -5,9 +5,11 @@ require "botabot/roles"
 module BotaBot
   class Plugin
     attr_writer :roles
-    def initialize(client, name, block)
+    attr_reader :name, :desc
+    def initialize(client, name, desc, block)
       @client = client
       @name   = name
+      @desc   = desc
       @block  = block
     end
     

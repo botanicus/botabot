@@ -1,5 +1,5 @@
 # bot.config, bot.muc
-plugin :about do |bot, muc, *args|
+plugin :about, "informace o botovi" do |bot, muc, *args|
   if args.empty?
     muc.say("Jsem velký botabot ve verzi #{BotaBot::VERSION}, tak tu moc nemachruj!")
   elsif args.include?("news")

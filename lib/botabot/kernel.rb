@@ -1,10 +1,10 @@
 module Kernel
-  def plugin(name, &block)
+  def plugin(name, desc = nil, &block)
     if name.is_a?(Hash)
       BotaBot::Plugins[name.key] = block
       BotaBot::Plugins[name.key].roles = name.values
     elsif name.is_a?(Symbol)
-      BotaBot::Plugins[name] = block
+      BotaBot::Plugins[name] = {:desc => desc, :block => block}
     end
   end
   

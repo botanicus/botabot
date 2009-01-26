@@ -7,9 +7,13 @@ module BotaBot
       return @plugins[name] || @plugins[:help]
     end
     
-    def self.[]=(name, block)
+    def self.[]=(name, options)
       @plugins ||= Hash.new
-      @plugins[name] = Plugin.new(BotaBot.bot, name, block)
+      @plugins[name] = Plugin.new(BotaBot.bot, name, options[:desc], options[:block])
+    end
+
+    def self.all
+      @plugins
     end
     
     # load and reload plugins

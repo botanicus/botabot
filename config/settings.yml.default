@@ -1,0 +1,6 @@
+account:
+  jid: <your-bot>@<your-provider>.<tld>
+  resource: <resource>
+  password: <somepassword>
+muc:
+  robots@conf.netlab.cz

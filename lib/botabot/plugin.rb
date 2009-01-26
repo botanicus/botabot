@@ -19,7 +19,7 @@ module BotaBot
     
     def run(muc, message, *args)
       BotaBot.logger.debug("Called plugin #{@name} with args #{args.inspect}")
-      @block.call(@client, muc, *args)
+      @block.call(@client, muc, message, *args)
     rescue
       BotaBot.logger.error("Exception: #$!")
       BotaBot.logger.error("Details: #{$!.backtrace.join("\n")}")

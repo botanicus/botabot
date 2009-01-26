@@ -1,0 +1,4 @@
+- roles
+- callbacks
+- plugin/callback management (bin/plugin.rb)
+- when exception in plugin occurs, puts the plugin into blacklist (recreate blacklist when plugins are reloaded)

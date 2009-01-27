@@ -24,9 +24,9 @@ module BotaBot
     BotaBot::Bot.instance
   end
   
-  def self.init
+  def self.init(profile)
     bot.init(config.jid, config.password)
-    bot.join(config.muc)
+    bot.join(config.muc(profile))
     Plugins.load
     return bot
   end
@@ -37,10 +37,8 @@ module BotaBot
     end
   end
   
-  def self.run
-    self.init
-    loop do
-      sleep 1
-    end
+  def self.run(profile)
+    self.init(profile)
+    loop { sleep 1 }
   end
 end

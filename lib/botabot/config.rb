@@ -17,8 +17,8 @@ module BotaBot
       @settings["account"]["password"]
     end
     
-    def muc
-      @settings["muc"]
+    def muc(profile = "default")
+      @settings["profiles"][profile]
     end
   end
 end

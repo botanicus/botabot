@@ -2,5 +2,6 @@ account:
   jid: <your-bot>@<your-provider>.<tld>
   resource: <resource>
   password: <somepassword>
-muc:
-  robots@conf.netlab.cz
+profiles:
+  default: pokec@conference.itcrowd.cz
+  robots: robots@conf.netlab.cz

@@ -8,14 +8,15 @@ module BotaBot
     end
 
     def run
-      self.help if @argv.length > 1
+      self.help if @argv.length > 2
+      profile = @argv.length.eql?(2) || (@argv.length.eql?(1) && @argv.first.match(/^\w/)) ? @argv.shift : "default"
       case @argv.first
       when "-i", "--interactive"
-        self.interactive
+        self.interactive(profile)
       when "-d", "--daemon"
-        self.daemonize
+        self.daemonize(profile)
       when nil
-        BotaBot.run
+        BotaBot.run(profile)
       else
         self.help
       end
@@ -28,16 +29,16 @@ module BotaBot
       puts "Without arguments BotaBot will run and print logger info to the screen"
     end
 
-    def interactive
-      BotaBot.init
+    def interactive(profile)
+      BotaBot.init(profile)
       require "botabot/console"
       ARGV.clear # otherwise IRB will raise exceptions, he thoughts it's his own ARGV
       # TODO: what with logger's debug messages?
       ::IRB.start(__FILE__)
     end
 
-    def daemonize
-      self.start
+    def daemonize(profile)
+      BotaBot.init(profile)
       raise NotImplementedError
     end
   end

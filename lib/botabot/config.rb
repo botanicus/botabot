@@ -9,6 +9,10 @@ module BotaBot
       @settings = YAML::load_file(file)
     end
     
+    def nick
+      @settings["account"]["nick"]
+    end
+    
     def jid
       @settings["account"]["jid"]
     end

@@ -1,0 +1,29 @@
+SPEC = Gem::Specification.new do |s|
+
+  # informations about author
+  s.author       = "Botanicus"
+  s.email        = "knava.bestvinensis@gmail.com"
+# FIXME:  s.homepage     = "http://"
+
+  # package informations
+  s.name         = "BotaBot"
+  s.version      = BotaBot::VERSION
+  s.summary      = "Just a bot for jabber (XMPP)."
+  s.description  = ""
+
+  # files and paths
+  s.files        = FileList["{test,lib}/**/*"]
+  s.require_path = "lib"
+
+  s.bindir = "."
+  s.executables = ["botabot.rb"]
+  
+  # dependencies
+  s.add_dependency("EasyRuby", [">= 0.0.1"])
+  s.add_dependency("xmpp4r",   [">= 0.0.1"])
+
+  # rdoc info
+  s.has_rdoc = true
+  s.extra_rdoc_files = Dir["[A-Z]*"]
+
+end

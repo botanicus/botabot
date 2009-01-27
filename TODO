@@ -1,3 +1,13 @@
+- rakefile, specfile
+- profiles (one profile for each MUC)
+- per profiles data stores (SQLite)
+- history
+- handle PMs, direct messages
+- vzkazovnicek
+- learning new gags
+- reagovani na <nick>: foo
+- statuses
+- console
 - roles
 - callbacks
 - plugin/callback management (bin/plugin.rb)

@@ -4,7 +4,7 @@ module BotaBot
   module Plugins
     def self.[](name)
       @plugins ||= Hash.new
-      return @plugins[name] || @plugins[:help]
+      return @plugins[name] || @plugins[:commands]
     end
     
     def self.[]=(name, options)

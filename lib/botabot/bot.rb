@@ -13,6 +13,13 @@ module BotaBot
       @mucs = Array.new
       BotaBot.logger.debug("Logged in as #{jid}")
     end
+
+    # TODO: statuses (from configuration)
+    def set_status
+      @status = Jabber::Presence.new
+      @status.set_show(:chat).set_status("Some status")
+      @bot.send(status)
+    end
     
     def join(room)
       BotaBot.logger.debug("Trying to join MUC '#{room}'")

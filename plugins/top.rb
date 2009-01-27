@@ -1,2 +1,2 @@
-plugin :help, "top spammeři" do
+plugin :top, "top spammeři" do
 end

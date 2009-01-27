@@ -1,0 +1,3 @@
+0.0.1:
+- support for more profiles (more MUC, settings)
+- methods muc, msg, nick and bot are available in plugins directly

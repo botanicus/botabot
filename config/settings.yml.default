@@ -1,4 +1,5 @@
 account:
+  nick: <nick-in-muc>
   jid: <your-bot>@<your-provider>.<tld>
   resource: <resource>
   password: <somepassword>

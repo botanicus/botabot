@@ -21,10 +21,10 @@ module BotaBot
       @bot.send(status)
     end
     
-    def join(room)
+    def join(room, nick="botabot")
       BotaBot.logger.debug("Trying to join MUC '#{room}'")
       muc = MUC.new(@client)
-      jid = Jabber::JID.new("#{room}/botabot")
+      jid = Jabber::JID.new("#{room}/#{nick}")
       muc.join(jid) # instead of just room
       BotaBot.logger.debug("Bot joined MUC '#{room}'")
       # important: we need to wait for initialization,

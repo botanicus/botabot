@@ -27,8 +27,9 @@ module BotaBot
   
   def self.init(profile)
     self.register_signals
+    config.set_profile(profile)
     bot.init(config.jid, config.password)
-    bot.join(config.muc(profile), config.nick)
+    bot.join(config.profile.room, config.profile)
     Plugins.load
     return bot
   end

@@ -1,5 +1,6 @@
 require "yaml"
 require "singleton"
+require "ostruct"
 
 module BotaBot
   class Config
@@ -21,8 +22,15 @@ module BotaBot
       @settings["account"]["password"]
     end
     
-    def muc(profile = "default")
-      @settings["profiles"][profile]
+    def profile
+      default = @settings["profiles"]["default"]
+      current = @settings["profiles"][@profile]
+      OpenStruct.new(default.merge(current))
+    end
+
+    def set_profile(profile = "default")
+      # TODO: check if profile exists
+      @profile = profile
     end
   end
 end

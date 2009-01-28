@@ -4,5 +4,16 @@ account:
   resource: <resource>
   password: <somepassword>
 profiles:
-  default: pokec@conference.itcrowd.cz
+  # this profile is default
+  # if you do not specify some of profile options,
+  # they will be taken from default profile
+  default:
+    room: pokec@conference.itcrowd.cz
+    nick: botabot
+    # possibilities: command: %c, nick: %n
+    # .about
+    # botabot: about
+    # botabot, about
+    format: [".%c", "%n: ", "%n, "]
+  merb: merb@conf.netlab.cz
   robots: robots@conf.netlab.cz

@@ -1,21 +1,23 @@
-:account:
+# this profile is default
+# if you do not specify some of profile options,
+# they will be taken from default profile
+:default:
   :nick: <nick-in-muc>
   :jid: <your-bot>@<your-provider>.<tld>
   :resource: <resource>
   :password: <somepassword>
-:profiles:
-  # this profile is default
-  # if you do not specify some of profile options,
-  # they will be taken from default profile
-  :default:
-    :room: pokec@conference.itcrowd.cz
-    :nick: botabot
-    # possibilities: command: %c, nick: %n
-    # .about
-    # botabot: about
-    # botabot, about
-    format: [".%c", "%n: ", "%n, "]
-    # when matched command doesn't exist use this
-    :missing: commands
-  :merb: merb@conf.netlab.cz
-  :robots: robots@conf.netlab.cz
+  :room: pokec@conference.itcrowd.cz
+  # possibilities: command: %c, nick: %n
+  # .about
+  # botabot: about
+  # botabot, about
+  :format: [".%c", "%n: ", "%n, "]
+  # when matched command doesn't exist use this
+  :missing: commands
+  :status: <status>
+:merb:
+  :room: merb@conf.netlab.cz
+  :status: Merb is the best webframework ever!
+:robots: 
+  :room: robots@conf.netlab.cz
+  :status: Just testing

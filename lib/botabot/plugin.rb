@@ -5,13 +5,38 @@ require "botabot/roles"
 module BotaBot
   # TODO: merge PluginInstance and Plugin classes
   class PluginInstance
-    attr_reader :bot, :muc, :msg, :nick
+    attr_reader :bot, :muc, :msg, :nick, :sender, :config
     def initialize(block, bot, muc, msg)
       self.register(block)
-      @bot  = bot
-      @muc  = muc
-      @msg  = msg
-      @nick = msg.from
+      @bot    = bot
+      @muc    = muc
+      @msg    = msg
+      @nick   = Jabber::JID.new(msg.from).resource
+      @config = BotaBot.config
+    end
+
+    def sender
+      # TODO: message from someone (not from room)
+      case msg.type
+      when :chat      then nick
+      when :groupchat then muc
+      end
+    end
+
+    # reply to room, to sender of message or to sender of PM
+    def reply(message)
+      # reply to person in MUC
+      if sender.eql?(nick)
+        BotaBot.logger.debug("Replying to '#{nick}'. Message: #{message}")
+        muc.say(message, sender)
+      # reply to room
+      elsif sender.eql?(muc)
+        BotaBot.logger.debug("Replying to room. Message: #{message}")
+        muc.say(message)
+      # reply to person not in MUC
+      else
+        raise NotImplementedError
+      end
     end
 
     def register(block)

@@ -2,9 +2,12 @@ require "botabot/plugin"
 
 module BotaBot
   module Plugins
+    def self.setup(default)
+      @plugins.default = @plugins[default.to_sym]
+    end
+
     def self.[](name)
-      @plugins ||= Hash.new
-      return @plugins[name] || @plugins[:commands]
+      @plugins[name]
     end
     
     def self.[]=(name, options)

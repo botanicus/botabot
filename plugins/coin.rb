@@ -7,9 +7,9 @@ plugin :coin, "throws a coin for you" do |*args|
   if args.empty?
   # one player game
     if (1 + rand(2)) == 1
-      muc.say(states[0])
+      reply(states[0])
     else
-      muc.say(states[1])
+      reply(states[1])
     end
   elsif args.length == 1 and states.include?(args[0])
   # two players game
@@ -20,18 +20,18 @@ plugin :coin, "throws a coin for you" do |*args|
       $players.push(player)
       $choice.push(args[0])
     else
-      muc.say("You can't go twice.")           if $players.include?(player)
-      muc.say("You can't pick the same side.") if $choice.include?(args[0])
+      reply("You can't go twice.")           if $players.include?(player)
+      reply("You can't pick the same side.") if $choice.include?(args[0])
     end
 #    $players.push(player) unless $players.include?(player)
     if $players.length >= 2
     # we have enough players, throw a coin!
       states.reverse! if (1 + rand(2)) == 1
-      muc.say($players[0] + ": " + states[0] + ", " + $players[1] + ": " + states[1])
+      reply($players[0] + ": " + states[0] + ", " + $players[1] + ": " + states[1])
       $players = []               # clear players list for another game
       $choice  = []               # clear choice list for another game
     end
   else
-    muc.say("Usage: .coin [tails | heads]")
+    reply("Usage: .coin [tails | heads]")
   end
 end

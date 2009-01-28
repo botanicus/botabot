@@ -9,7 +9,7 @@ plugin :google, "hledej na Google" do |*words|
   end
   #TODO: replace <b> & </b> by * in this way ->  *word*
   result.each do |link|
-    muc.say(link)
+    reply(link)
   end
   #response.body.scan(/<a class=l href="(.+?)">(.+?)<\/a>/) do
   #  result.push("#{$2}: #{$1}")

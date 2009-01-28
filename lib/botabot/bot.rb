@@ -6,25 +6,44 @@ module BotaBot
   class Bot
     include Singleton
     attr_accessor :mucs
-    def init(jid, password)
-      @client = Jabber::Client.new(Jabber::JID.new(jid))
+    attr_reader :config
+    def init(config)
+      @config = config
+      @client = Jabber::Client.new(Jabber::JID.new("#{config.jid}/#{config.resource}"))
       @client.connect
-      @client.auth(password)
+      @client.auth(config.password)
       @mucs = Array.new
-      BotaBot.logger.debug("Logged in as #{jid}")
+      BotaBot.logger.debug("Logged in as #{config.jid}")
+      self.set_status
+    rescue ClientAuthenticationFailure
+      # try to register new JID for your bot if authentication failed
+      @retries ||= 0
+      @retries  += 1
+      @client.register(config.password)
+      retry unless @retries > 1
     end
 
-    # TODO: statuses (from configuration)
     def set_status
-      @status = Jabber::Presence.new
-      @status.set_show(:chat).set_status("Some status")
-      @bot.send(status)
+      status = Jabber::Presence.new(:chat, config.status)
+
+      @client.send(Jabber::Presence.new.set_type(:chat))
+
+      #@client.send(status)
+      BotaBot.logger.debug("Status set to '#{config.status}'")
+    end
+
+    # send_message("botanicus@njs.netlab.cz", "Hey bro!")
+    def send_message(jid, body)
+      jid = Jabber::JID.new(jid)
+      # type normal: simple message; type chat: 2to2 chat window
+      message = Jabber::Message::new(jid, body).set_type(:normal).set_id('1')
+      @client.send(message)
     end
     
-    def join(room, profile)
+    def join(room)
       BotaBot.logger.debug("Trying to join MUC '#{room}'")
-      muc = MUC.new(@client, profile)
-      jid = Jabber::JID.new("#{room}/#{profile.nick}")
+      muc = MUC.new(@client, config)
+      jid = Jabber::JID.new("#{config.room}/#{config.nick}")
       muc.join(jid) # instead of just room
       BotaBot.logger.debug("Bot joined MUC '#{room}'")
       # important: we need to wait for initialization,

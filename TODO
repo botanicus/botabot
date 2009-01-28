@@ -1,14 +1,17 @@
-- rakefile, specfile
-- profiles (one profile for each MUC)
+=== Core ===
+- status
 - per profiles data stores (SQLite)
 - history
-- handle PMs, direct messages
-- vzkazovnicek
-- learning new gags
-- reagovani na <nick>: foo
-- statuses
+- handle direct messages
 - console
 - roles
 - callbacks
 - plugin/callback management (bin/plugin.rb)
-- when exception in plugin occurs, puts the plugin into blacklist (recreate blacklist when plugins are reloaded)
+- code reloading seems to be a bit complicated (need to restart some parts of bot?)
+
+=== Project ===
+- rakefile, specfile
+
+=== Plugins ===
+- vzkazovnicek
+- learning new gags

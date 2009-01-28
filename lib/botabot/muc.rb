@@ -2,14 +2,15 @@ require "xmpp4r/muc"
 
 module BotaBot
   class MUC < Jabber::MUC::MUCClient
-    def initialize(client, profile)
+    attr_reader :config
+    def initialize(client, config)
       super(client)
-      @nick    = profile.nick
-      @profile = profile
+      @nick    = config.nick
+      @config  = config
       @regexps = format_regexp
     end
 
-    def format_regexp(format = @profile.format)
+    def format_regexp(format = config.format)
       format_regexp([format]) if format.is_a?(String)
       format.map do |string|
         string = Regexp.quote(string)
@@ -53,16 +54,19 @@ module BotaBot
       #   puts
       # end
       # 
-      # add_private_message_callback do |message|
-      #   puts "PM: #{message}"
-      #   puts "Body: #{message.body}"
-      #   puts
-      # end
+      add_private_message_callback do |message|
+        BotaBot.logger.debug("PM: #{message.inspect}")
+        BotaBot.logger.debug("From: #{message.from}")
+        BotaBot.logger.debug("Body: #{message.body}")
+        args = message.body.split(/\s+/)
+        Plugins[args.shift.to_sym].run(self, message, *args)
+      end
     end
 
-    def say(what)
+    # say(what, nickname)
+    def say(what, to = nil)
       message = Jabber::Message.new(self, what)
-      self.send(message)
+      self.send(message, to)
     end
     
     # def join(room)

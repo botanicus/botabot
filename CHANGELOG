@@ -2,3 +2,6 @@
 - support for more profiles (more MUC, settings)
 - methods muc, msg, nick and bot are available in plugins directly
 - Ctrl-c 1x => reload (plugins and core), 2x => terminate
+- support for profiles (more MUCs, configurable format of message for command matching)
+- can handle PM messages (send just command and its args, e. g. "about news")
+- can handle resources

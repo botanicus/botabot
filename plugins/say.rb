@@ -4,8 +4,8 @@
 
 plugin :say, "talks for you" do |*args|
   if args.empty? or args.include?("help")
-    muc.say("Usage: .say <message>")
+    reply("Usage: .say <message>")
   else
-    muc.say(msg.body.sub(/^\.say\s/, ""))
+    reply(msg.body.sub(/^\.say\s/, ""))
   end
 end

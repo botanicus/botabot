@@ -13,7 +13,7 @@ mate config/settings.yml
 
 # Run the bot
 ruby bin/botabot.rb
-<pre>
+</pre>
 
 h1. Future
 

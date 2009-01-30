@@ -15,6 +15,8 @@ module BotaBot
         self.interactive(profile)
       when "-d", "--daemon"
         self.daemonize(profile)
+      when "-m", "--migrate"
+        self.migrate
       when nil
         BotaBot.run(profile)
       else
@@ -35,6 +37,10 @@ module BotaBot
       ARGV.clear # otherwise IRB will raise exceptions, he thoughts it's his own ARGV
       # TODO: what with logger's debug messages?
       ::IRB.start(__FILE__)
+    end
+
+    def migrate
+      BotaBot.migrate
     end
 
     def daemonize(profile)

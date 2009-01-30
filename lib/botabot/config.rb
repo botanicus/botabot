@@ -10,7 +10,7 @@ module BotaBot
     end
     
     def profile
-      default = {:nick => "botabot", :format => ["!%c", "%n: ", "%n, "]}
+      default = {:nick => "botabot", :format => ["!%c", "%n: ", "%n, "], :resource => "botabot-#{rand(1000)}"}
       default_profile = @settings[:default]
       current = @settings[@profile]
       profile = default.merge(default_profile).merge(current)

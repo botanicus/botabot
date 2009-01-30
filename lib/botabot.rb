@@ -6,9 +6,10 @@ require "botabot/exceptions"
 require "botabot/logger"
 require "botabot/muc"
 require "botabot/plugins"
+require "botabot/storage"
 
 module BotaBot
-  VERSION = "0.0.1"
+  VERSION = "0.0.2"
   def self.root
     File.dirname(File.dirname(__FILE__))
   end
@@ -24,14 +25,28 @@ module BotaBot
   def self.bot
     BotaBot::Bot.instance
   end
+
+  def self.storage
+    BotaBot::Storage.instance
+  end
+
+  # TODO
+  def self.migrate
+    config.profiles.each do |profile|
+      storage.init(config.room)
+      storage.migrate
+    end
+  end
   
   def self.init(profile)
     self.register_signals
     config.set_profile(profile)
+    storage.init(config.room)
     bot.init(config)
     bot.join(config.room)
     Plugins.load
     Plugins.setup(config.missing)
+    Callbacks.load
     return bot
   end
 

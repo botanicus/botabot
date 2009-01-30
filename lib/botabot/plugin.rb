@@ -39,6 +39,10 @@ module BotaBot
       end
     end
 
+    def storage
+      raise NotImplementedError
+    end
+
     def register(block)
       self.class.send(:define_method, :run, &block)
     end

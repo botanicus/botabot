@@ -5,3 +5,6 @@
 - support for profiles (more MUCs, configurable format of message for command matching)
 - can handle PM messages (send just command and its args, e. g. "about news")
 - can handle resources
+
+0.0.2:
+- support for data storage by DataMapper

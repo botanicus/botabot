@@ -5,6 +5,7 @@ module BotaBot
       Dir["#{BotaBot.root}/callbacks/*.rb"].each do |plugin|
         Kernel.load(plugin)
       end
+      BotaBot.logger.debug("Callbacks loaded")
     end
     
     def self.[](name, block)

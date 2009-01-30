@@ -1,3 +1,4 @@
 # Called when someone leave the room
-callback :leave do |muc, time, nick|
+callback :leave do |*args|
+  BotaBot.logger.debug("Callback leave called.")
 end

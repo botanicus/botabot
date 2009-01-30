@@ -36,24 +36,25 @@ module BotaBot
         end
       end
       
-      # add_join_callback do |message|
-      #   puts "Join: #{message}"
-      #   puts "Body: #{message.body}"
-      #   puts
-      # end
-      # 
-      # add_leave_callback do |message|
-      #   puts "Leave: #{message}"
-      #   puts "Body: #{message.body}"
-      #   puts
-      # end
-      # 
-      # add_presence_callback do |message|
-      #   puts "Presence: #{message}"
-      #   puts "Body: #{message.body}"
-      #   puts
-      # end
-      # 
+      add_join_callback do |message|
+        BotaBot.logger.debug("User #{message.from} join the room.")
+        BotaBot.logger.debug("Message: #{message.inspect}")
+      end
+      
+      add_leave_callback do |message|
+        BotaBot.logger.debug("User #{message.from} leave the room.")
+        BotaBot.logger.debug("Message: #{message.inspect}")
+      end
+      
+      # TODO: works it?
+      add_presence_callback do |message|
+        BotaBot.logger.debug("Message: #{message.inspect}")
+        BotaBot.logger.debug("From: #{message.from}")
+        BotaBot.logger.debug("Body: #{message.body}")
+      end
+      
+      # TODO: at_exit ... close SQLite connection etc
+
       add_private_message_callback do |message|
         BotaBot.logger.debug("PM: #{message.inspect}")
         BotaBot.logger.debug("From: #{message.from}")
@@ -68,31 +69,5 @@ module BotaBot
       message = Jabber::Message.new(self, what)
       self.send(message, to)
     end
-    
-    # def join(room)
-    #   super(Jabber::JID.new("#{room}/botabot"))
-    # end
-    
-    # def reload_callbacks
-    #   setup_callbacks
-    # end
-    
-    # private
-    # TODO: plugins can have access to callbacks
-    # def setup_callbacks
-      # Callbacks.each do |event, block|
-      #   self.__send__(event, &block) && BotaBot.logger("Registered event #{event}")
-      # end
-      # add_message_callback do |time, nick, text|
-      #   # next if nick.eql?("botabot")
-      #   # next if time >= @join_time
-      #   puts "Text: #{text.inspect}"
-      #   if text.match(/^\.(\w+)/)
-      #     Plugins[$1.to_sym].run(muc)
-      #   else
-      #     Plugins[:help].run(muc)
-      #   end    
-      # end
-    # end
   end
 end

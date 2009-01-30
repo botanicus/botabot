@@ -1,0 +1,22 @@
+h1. About
+
+BotaBot is bot for jabber (XMPP protocol), especialy for MUC (multi user chat). It can interact with users, save history
+
+h1. Usage
+
+<pre>
+# Copy configuration template
+cp config/settings.yml.default config/settings.yml
+
+# Edit configuration file. Examples are given in the file.
+mate config/settings.yml
+
+# Run the bot
+ruby bin/botabot.rb
+<pre>
+
+h1. Future
+
+Before BotaBot 1.0 I would like to implement persistent data storage powered by DataMapper, statuses, permissions to execute commands, better console, history plugin and better code reloading.
+
+It should also get a Rakefile with options for RubyGems and be available as a RubyGem.

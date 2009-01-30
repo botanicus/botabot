@@ -4,6 +4,10 @@
 :default:
   :nick: <nick-in-muc>
   :jid: <your-bot>@<your-provider>.<tld>
+  # if you want to, u can set resource,
+  # but note, if you will run two instances
+  # with one resource, the first one will
+  # be replaced by the second one
   :resource: <resource>
   :password: <somepassword>
   :room: pokec@conference.itcrowd.cz
@@ -11,7 +15,7 @@
   # .about
   # botabot: about
   # botabot, about
-  :format: [".%c", "%n: ", "%n, "]
+  :format: [".%c", "%n: %c", "%n, %c"]
   # when matched command doesn't exist use this
   :missing: commands
   :status: <status>

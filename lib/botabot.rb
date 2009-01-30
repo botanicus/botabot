@@ -7,6 +7,7 @@ require "botabot/logger"
 require "botabot/muc"
 require "botabot/plugins"
 require "botabot/storage"
+require "botabot/callbacks"
 
 module BotaBot
   VERSION = "0.0.2"

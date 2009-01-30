@@ -1,3 +1,6 @@
+require "botabot/plugins"
+require "botabot/callbacks"
+
 module Kernel
   def plugin(name, desc = nil, &block)
     if name.is_a?(Hash)
@@ -12,6 +15,6 @@ module Kernel
   #   muc.say("Seru na vas, ja jdu domu!")
   # end
   def callback(name, &block)
-    Callbacks[name] = block
+    BotaBot::Callbacks[name] = block
   end
 end

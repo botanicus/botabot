@@ -1,3 +1,4 @@
+# DEPRECATED
 SPEC = Gem::Specification.new do |s|
 
   # informations about author

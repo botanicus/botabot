@@ -2,6 +2,7 @@
 
 $:.push(File.dirname(__FILE__) + "/../lib")
 
+# TODO: base = File.symlink?(__FILE__) ? File.readlink(__FILE__) : __FILE__
 require "rubygems"
 require "botabot/cli"
 
